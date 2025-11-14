@@ -59,8 +59,9 @@ public class ReadyPanelTransitionCtrl : MonoBehaviour
     /// - 게임 상태를 Select 로 변경
     /// - 페이드 애니메이션 시작 요청
     /// - 시작 버튼 사운드 출력
+    /// + 외부 호출용으로 추가~
     /// </summary>
-    private void OnReadyClicked()
+    public void OnReadyClicked()
     {
         if (_fadeAnimationCtrl != null)
         {

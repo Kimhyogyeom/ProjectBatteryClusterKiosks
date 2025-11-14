@@ -2207,6 +2207,7 @@ MonoBehaviour:
   _filmingPanelCtrl: {fileID: 801409437}
   _filmingToSelectCtrl: {fileID: 1367516091}
   _paymentCtrl: {fileID: 1574339012}
+  _readyAutoTransitionCtrl: {fileID: 937384633}
   _isStateStep: -1
 --- !u!1 &271571540
 GameObject:
@@ -9569,6 +9570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449aed39dacdd724488bab6767440865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _readyPanelTransitionCtrl: {fileID: 1915019323}
   _startSeconds: 10
   _timer: 0
   _timerText: {fileID: 714233430}

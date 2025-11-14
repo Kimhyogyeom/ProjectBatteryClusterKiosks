@@ -20,6 +20,7 @@ public class FadeAnimationCtrl : MonoBehaviour
     [SerializeField] private FilmingToSelectCtrl _filmingToSelectCtrl; // 촬영 화면 → 선택 화면으로 돌아갈 때 사용
 
     [SerializeField] private PaymentCtrl _paymentCtrl;  // 결제 완료 시스템
+    [SerializeField] private ReadyAutoTransitionCtrl _readyAutoTransitionCtrl;  // 페이드 아웃 됐을때 타이머 호출
 
     /// <summary>
     /// 페이드 단계 상태 값  
@@ -73,6 +74,7 @@ public class FadeAnimationCtrl : MonoBehaviour
                 if (_paymentCtrl != null)
                 {
                     _paymentCtrl.OnCallbackEnd();
+                    _readyAutoTransitionCtrl.AutoTransitionTimer();
                 }
                 else
                 {
