@@ -10,6 +10,9 @@ using UnityEngine;
 /// </summary>
 public class PaymentCtrl : MonoBehaviour
 {
+    [Header("Component")]
+    [SerializeField] private FadeAnimationCtrl _fadeAnimationCtrl;  // 페이드 애니메이션
+
     [Header("Panels")]
     [SerializeField] private GameObject _paymentPanel;      // 결제용 패널
     [SerializeField] private GameObject _readyPanel;        // 결제 완료 후 돌아갈 대기(Ready) 패널
@@ -165,7 +168,10 @@ public class PaymentCtrl : MonoBehaviour
         if (_alwaysSuccess)
         {
             if (_textMeshPro != null)
+            {
                 _textMeshPro.text = "결제 성공";
+                _fadeAnimationCtrl.StartFade();
+            }
 
             // 실제라면 OnPaymentApproved() 안에서 StopLoading() 을 호출할 수도 있지만
             // 여기서는 먼저 로딩을 정지한 뒤 약간 딜레이 후 승인 처리
@@ -221,7 +227,12 @@ public class PaymentCtrl : MonoBehaviour
         StopLoading();
 
         Debug.Log("[PAY] 결제 승인");
-
+    }
+    /// <summary>
+    /// 외부 호출용 콜백 함수 (페이드 Start가 끝났을 때 호출됨)
+    /// </summary>
+    public void OnCallbackEnd()
+    {
         // 상태를 Ready 로 되돌림
         GameManager.Instance.SetState(KioskState.Ready);
 

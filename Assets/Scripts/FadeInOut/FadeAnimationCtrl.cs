@@ -19,6 +19,8 @@ public class FadeAnimationCtrl : MonoBehaviour
     [SerializeField] private FilmingPanelCtrl _filmingPanelCtrl;    // 프레임 선택 → 촬영 패널 전환 담당
     [SerializeField] private FilmingToSelectCtrl _filmingToSelectCtrl; // 촬영 화면 → 선택 화면으로 돌아갈 때 사용
 
+    [SerializeField] private PaymentCtrl _paymentCtrl;  // 결제 완료 시스템
+
     /// <summary>
     /// 페이드 단계 상태 값  
     /// 0 : Ready 화면에서 "시작하기" 버튼을 눌러 Camera 패널로 넘어갈 때  
@@ -65,8 +67,20 @@ public class FadeAnimationCtrl : MonoBehaviour
             _fadeAnimator.SetBool("Fade", false);
             SoundManager.Instance.PlaySFX(SoundManager.Instance._soundDatabase._fadeOut);
 
+            if (_isStateStep == -1)
+            {
+                _isStateStep = 0;
+                if (_paymentCtrl != null)
+                {
+                    _paymentCtrl.OnCallbackEnd();
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning("_paymentCtrl reference is missing");
+                }
+            }
             // 0단계: Ready 화면에서 "시작하기" 버튼 클릭 후 → 카메라 패널로 전환
-            if (_isStateStep == 0)
+            else if (_isStateStep == 0)
             {
                 _isStateStep = 1;
 
@@ -99,7 +113,7 @@ public class FadeAnimationCtrl : MonoBehaviour
             {
                 // 현재 스텝 최대 값은 2  
                 // 2까지 처리 후에는 다시 0으로 초기화하여 다음 루프를 위한 준비
-                _isStateStep = 0;
+                _isStateStep = -1;
                 _initCtrl.PanaelActiveCtrl();
             }
             // 100단계: 촬영 화면에서 Back 버튼 사용 시  

@@ -14,26 +14,26 @@ using UnityEngine.UI;
 public class InitCtrl : MonoBehaviour
 {
     [Header("Add")]
-    [SerializeField] private Button _initButton;             // 돌아가기(초기화) 버튼
-    [SerializeField] private TextMeshProUGUI _initText;      // 버튼 옆/위에 카운트다운 표시용 텍스트
-    private Coroutine _resetCallbackRoutine = null;          // 자동 리셋 코루틴
-    [SerializeField] private int _successToBackTime = 10;    // 인쇄 후 초기 화면으로 돌아가기까지 대기 시간(초)
+    [SerializeField] private Button _initButton;            // 돌아가기(초기화) 버튼
+    [SerializeField] private TextMeshProUGUI _initText;     // 버튼 옆/위에 카운트다운 표시용 텍스트
+    private Coroutine _resetCallbackRoutine = null;         // 자동 리셋 코루틴
+    [SerializeField] private int _successToBackTime = 10;   // 인쇄 후 초기 화면으로 돌아가기까지 대기 시간(초)
 
     [Header("Setting Component")]
-    [SerializeField] private PhotoFrameSelectCtrl _photoFrameSelectCtrl; // 프레임 선택 컨트롤러
-    [SerializeField] private PrintController _printController;           // 프린트 컨트롤러
-    [SerializeField] private FadeAnimationCtrl _fadeAnimationCtrl;       // 페이드 연출 컨트롤러
-    [SerializeField] private PrintButtonHandler _printButtonHandler;     // 출력 버튼 핸들러
-    [SerializeField] private StepCountdownUI _stepCountdownUI;           // 촬영 카운트다운 컨트롤러
-    [SerializeField] private FilmingToSelectCtrl _filmingToSelectCtrl;   // 촬영 → 선택 화면 전환 컨트롤러
-    [SerializeField] private FilmingEndCtrl _filmingEndCtrl;             // 촬영 종료 후 처리 컨트롤러 (필요시 확장용)
+    [SerializeField] private PhotoFrameSelectCtrl _photoFrameSelectCtrl;    // 프레임 선택 컨트롤러
+    [SerializeField] private PrintController _printController;              // 프린트 컨트롤러
+    [SerializeField] private FadeAnimationCtrl _fadeAnimationCtrl;          // 페이드 연출 컨트롤러
+    [SerializeField] private PrintButtonHandler _printButtonHandler;        // 출력 버튼 핸들러
+    [SerializeField] private StepCountdownUI _stepCountdownUI;              // 촬영 카운트다운 컨트롤러
+    [SerializeField] private FilmingToSelectCtrl _filmingToSelectCtrl;      // 촬영 → 선택 화면 전환 컨트롤러
+    [SerializeField] private FilmingEndCtrl _filmingEndCtrl;                // 촬영 종료 후 처리 컨트롤러 (필요시 확장용)
 
     [Header("Setting Object")]
-    [SerializeField] private Button _photoButton;             // 촬영 버튼
-    [SerializeField] private GameObject _photoButtonFake;     // 촬영 중 대체/가짜 버튼
-    [SerializeField] private Image _photoImage;               // 필요 시 사용하는 이미지(예: 프리뷰 등)
-    [SerializeField] private TextMeshProUGUI _buttonText;     // 촬영 버튼 텍스트
-    private ColorBlock _originColor;                          // 촬영 버튼 원래 색상 저장용
+    [SerializeField] private Button _photoButton;               // 촬영 버튼
+    [SerializeField] private GameObject _photoButtonFake;       // 촬영 중 대체/가짜 버튼
+    [SerializeField] private Image _photoImage;                 // 필요 시 사용하는 이미지(예: 프리뷰 등)
+    [SerializeField] private TextMeshProUGUI _buttonText;       // 촬영 버튼 텍스트
+    private ColorBlock _originColor;                            // 촬영 버튼 원래 색상 저장용
 
     [Space(10)]
     [SerializeField] private GameObject _currentPanel;  // 현재 인쇄 완료 후 보여지는 패널
@@ -41,9 +41,9 @@ public class InitCtrl : MonoBehaviour
     [SerializeField] private GameObject _cameraFocus;   // 카메라 조준점(촬영 가이드용)
 
     [Header("Filming")]
-    [SerializeField] private GameObject _stepsObject;   // 1~4(5) 스텝 표시 UI
-    [SerializeField] private string _takePictureString = "사진찍기";  // 촬영 버튼 기본 문구
-    [SerializeField] private TextMeshProUGUI _exitMessageText;        // 촬영 종료 안내 텍스트
+    [SerializeField] private GameObject _stepsObject;                   // 1~4(5) 스텝 표시 UI
+    [SerializeField] private string _takePictureString = "사진찍기";     // 촬영 버튼 기본 문구
+    [SerializeField] private TextMeshProUGUI _exitMessageText;          // 촬영 종료 안내 텍스트
     [SerializeField, TextArea(4, 5)]
     private string _exitMessageString = "사진 촬영이 종료되었습니다.\n사진을 출력하세요."; // 종료 안내 기본 문구
 
